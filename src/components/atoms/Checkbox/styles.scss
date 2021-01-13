@@ -1,0 +1,41 @@
+@import "../../../styles/vars";
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+
+  &__text {
+    padding-left: 10px;
+  }
+
+
+  &:hover .checkbox__check {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .checkbox__input {
+    width: 0;
+    height: 0;
+    opacity: 0;
+
+
+    &:checked + .checkbox__check {
+      stroke-dashoffset: 0;
+      background: $default;
+    }
+  }
+
+  .checkbox__check {
+    border: 1px solid #858BA1;
+    stroke: #f9f9f9;
+    stroke-dasharray: 25;
+    stroke-dashoffset: 25;
+    stroke-linecap: round;
+    stroke-width: 0.2rem;
+    border-radius: 0.2rem;
+    fill: none;
+    transition: background 0.4s, stroke-dashoffset 0.25s;
+  }
+}

@@ -1,0 +1,41 @@
+@import "../../../styles/vars";
+
+.button {
+  width: 120px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #ffffff;
+  border: none;
+  transition: all 0.2s ease;
+
+  &.primary {
+    background: $primary;
+
+    &:hover {
+      color: $primary;
+      border: 2px solid $primary;
+      background: #ffffff;
+    }
+  }
+
+  &.secondary {
+    background: $secondary;
+
+    &:hover {
+      color: $secondary;
+      border: 2px solid $secondary;
+      background: #ffffff;
+    }
+  }
+
+  &.default {
+    background: $default;
+
+    &:hover {
+      color: $default;
+      border: 3px solid $default;
+      background: #ffffff;
+    }
+  }
+}
