@@ -3,13 +3,13 @@ import "./styles.scss"
 import {TaskCard} from "../../molecules/TaskCard/TaskCard";
 import {TaskT} from "../../../pages/Home";
 
-type PropsT = {
+export type TaskListPropsT = {
    tasks: TaskT[]
    changeTaskStatus: (id: number, isCompleted: boolean) => void
 }
 
 
-const TaskList: FC<PropsT> = React.memo(({tasks, changeTaskStatus}) => {
+const TaskList: FC<TaskListPropsT> = React.memo(({tasks, changeTaskStatus}) => {
 
    return (
       <div className={"task-list"}>

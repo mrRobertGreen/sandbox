@@ -1,5 +1,6 @@
 import React, {FC} from "react";
 import "./styles.scss"
+import {Header} from "../../organisms/Header/Header";
 
 type PropsT = {
 
@@ -8,7 +9,11 @@ type PropsT = {
 const Page: FC<PropsT> = ({children}) => {
    return (
       <div className={"page"}>
-         {children}
+         <Header/>
+         <div className="page-container">
+            {children}
+         </div>
+
       </div>
    )
 }

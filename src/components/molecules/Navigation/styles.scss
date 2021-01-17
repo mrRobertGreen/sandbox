@@ -1,0 +1,11 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  &__item {
+    display: inline;
+    margin-right: 45px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

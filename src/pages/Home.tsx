@@ -1,28 +1,22 @@
-import React, {FC, useCallback, useEffect, useState} from "react";
+import React, {FC, useCallback, useState} from "react";
 import {Page} from "../components/templates/Page/Page";
 import {InputBox} from "../components/molecules/InputBox/InputBox";
-import {TaskList} from "../components/organisms/TaskList/TaskList";
+import {TaskList, TaskListPropsT} from "../components/organisms/TaskList/TaskList";
+import Loadable from 'react-loadable';
+import {Loader} from "../components/atoms/Loader/Loader";
 
 type PropsT = {}
 
-export type TaskT = {
-   isCompleted: boolean
-   text: string
-   id: number
-}
-
-const createFakeTasks = () => {
-   let res: TaskT[] = []
-   for (let i = 0; i < 10; i++) {
-      res = [...res, {
-         text: "task " + (i + 1),
-         isCompleted: false,
-         id: i,
-      }]
+const loadableTaskListOptions: LoadableExport.OptionsWithRender<TaskListPropsT, any> = {
+   loader: () => import("../components/organisms/TaskList/TaskList"),
+   loading: Loader,
+   render(loaded: any, props: TaskListPropsT): React.ReactNode {
+      const TaskList = loaded.TaskList
+      return <TaskList {...props}/>
    }
-   return res
 }
 
+const LoadableTaskList = Loadable(loadableTaskListOptions)
 
 /*
 * Большие списки? Не беда! Пошли вон либы типа react-virtualized!
@@ -55,11 +49,31 @@ const Home: FC<PropsT> = ({}) => {
    return (
       <Page>
          <InputBox addTask={addTask}/>
-         <TaskList tasks={tasks} changeTaskStatus={changeTaskStatus}/>
+         <LoadableTaskList tasks={tasks} changeTaskStatus={changeTaskStatus}/>
       </Page>
    )
 }
 
+const createFakeTasks = () => {
+   let res: TaskT[] = []
+   for (let i = 0; i < 100; i++) {
+      res = [...res, {
+         text: "task " + (i + 1),
+         isCompleted: false,
+         id: i,
+      }]
+   }
+   return res
+}
+
+
+export type TaskT = {
+   isCompleted: boolean
+   text: string
+   id: number
+}
+
+
 export {
-   Home
+   Home,
 }

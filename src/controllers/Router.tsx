@@ -1,5 +1,7 @@
 import React, {FC} from "react";
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import {About} from "../pages/About";
+import {Statistics} from "../pages/Statistics";
 import {Home} from "../pages/Home";
 
 const Router: FC = ({}) => {
@@ -7,7 +9,9 @@ const Router: FC = ({}) => {
       <BrowserRouter>
          <Switch>
             <Route path={"/home"} component={Home}/>
-            <Route path={"/"} component={() => <Redirect to={"/home"}/>}/>
+            <Route path={"/about"} component={About}/>
+            <Route path={"/statistics"} component={Statistics}/>
+            <Route path={"/"} component={() => <Redirect to={"/about"}/>}/>
          </Switch>
       </BrowserRouter>
    )
