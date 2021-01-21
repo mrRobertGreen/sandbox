@@ -2,6 +2,7 @@
   "name": "sandbox",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:6666",
   "dependencies": {
     "@babel/core": "7.12.3",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.2",
@@ -15,6 +16,7 @@
     "@types/react-dom": "^16.9.10",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
+    "axios": "^0.21.1",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.0",
     "babel-loader": "8.1.0",
@@ -45,7 +47,7 @@
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
     "mini-css-extract-plugin": "0.11.3",
-    "node-sass": "^4.14.1",
+    "node-sass": "^4.14.0",
     "optimize-css-assets-webpack-plugin": "5.0.4",
     "pnp-webpack-plugin": "1.6.4",
     "postcss-flexbugs-fixes": "4.2.1",
@@ -82,7 +84,9 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "server": "nodemon app.ts --prefix server",
+    "dev": "concurrently \"npm run start\" \"npm run server\""
   },
   "eslintConfig": {
     "extends": [
@@ -112,7 +116,9 @@
     "@types/react-loadable": "^5.5.4",
     "@types/react-router-dom": "^5.1.7",
     "@types/react-virtualized-auto-sizer": "^1.0.0",
-    "@types/react-window": "^1.8.2"
+    "@types/react-window": "^1.8.2",
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.7"
   },
   "jest": {
     "roots": [

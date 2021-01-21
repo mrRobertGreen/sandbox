@@ -1,9 +1,11 @@
-import React, {FC, useCallback, useState} from "react";
+import React, {FC, useCallback, useEffect, useState} from "react";
+import axios from 'axios'
 import {Page} from "../components/templates/Page/Page";
 import {InputBox} from "../components/molecules/InputBox/InputBox";
 import {TaskList, TaskListPropsT} from "../components/organisms/TaskList/TaskList";
 import Loadable from 'react-loadable';
 import {Loader} from "../components/atoms/Loader/Loader";
+import {TaskT} from "../../server/types";
 
 type PropsT = {}
 
@@ -26,7 +28,16 @@ const LoadableTaskList = Loadable(loadableTaskListOptions)
 
 const Home: FC<PropsT> = ({}) => {
 
-   const [tasks, setTasks] = useState<TaskT[]>(createFakeTasks())
+   const [tasks, setTasks] = useState<TaskT[]>([])
+
+   useEffect(() => {
+      axios.get('/api/tasks/get')
+          .then(res => {
+             if (res.data.success) {
+                setTasks(res.data.data)
+             }
+          })
+   }, [])
 
    const addTask = useCallback((text: string) => {
       const task: TaskT = {
@@ -65,14 +76,6 @@ const createFakeTasks = () => {
    }
    return res
 }
-
-
-export type TaskT = {
-   isCompleted: boolean
-   text: string
-   id: number
-}
-
 
 export {
    Home,

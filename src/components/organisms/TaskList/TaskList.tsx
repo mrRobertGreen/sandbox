@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import "./styles.scss"
 import {TaskCard} from "../../molecules/TaskCard/TaskCard";
-import {TaskT} from "../../../pages/Home";
+import {TaskT} from "../../../../server/types";
 
 export type TaskListPropsT = {
    tasks: TaskT[]
